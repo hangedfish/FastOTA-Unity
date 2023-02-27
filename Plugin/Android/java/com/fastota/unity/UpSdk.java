@@ -16,4 +16,19 @@ public class UpSdk {
         }
     }
 
+    public static String GetGlobalMetadataFilePath(Context ctx) {
+        String filePath = GetUnityFilesDir(ctx) + "/dlstub/Metadata/global-metadata.dat";
+        return filePath;
+    }
+
+    private static String GetUnityFilesDir(Context ctx) {
+        File externalPath = ctx.getExternalFilesDir(null);
+        File internalPath = ctx.getFilesDir();
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) && externalPath.canRead() && externalPath.canWrite()) {
+            return externalPath.getPath();
+        }
+        return internalPath.getPath();
+    }
+
 }

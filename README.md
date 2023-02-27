@@ -4,7 +4,9 @@ FastOTA-Unity 是一个 稳定、高效、兼容性强 的 Unity Android libil2c
 * 高效：数据透传，无复杂的重定向逻辑，不产生额外的性能开销
 * 兼容性强：兼容性与 Unity 编译配置一致，可在 TAPTAP、233乐园、摸摸鱼、闪玩 等基于 “沙盒容器” 或 “插件化” 技术的分发渠道中工作
 
-根据 Unity 2021.3.19f1 适配，理论上 Unity 2021 都可用
+已适配 Unity 2021、2022
+
+> Google Play 政策禁止更新动态库，不要在 Google Play 渠道中使用
 
 # 实现原理
 
@@ -22,14 +24,20 @@ FastOTA-Unity 是一个 稳定、高效、兼容性强 的 Unity Android libil2c
 
 ## 使用
 
-通常游戏 APP 启动流程
+建议游戏 APP 启动流程
 
 1. SplashActivity
-    1. 检查更新
-        1. 下载资源和解压资源
-        2. 使更新资源生效
+
+    1. 检查本地更新资源，使更新资源生效
     2. 启动 UnityPlayerActivity 进入游戏
+
 2. UnityPlayerActivity
+    
+    联网检查游戏更新，如果游戏需要更新
+
+    1. 下载和解压资源
+    2. 重启游戏进程
+        
 
 更新资源至少包含
 * 设备对应 ABI 的libil2cpp.so 文件
@@ -41,9 +49,7 @@ FastOTA-Unity 是一个 稳定、高效、兼容性强 的 Unity Android libil2c
 
 * 使 global-metadata.dat 资源生效
 
-    释放 global-metadata.dat 到对应的位置，覆盖原文件
-    * global-metadata.dat 释放的路径与 PlayerSetting 中的安装位置有关
-    * 通常位于 `/data/media/0/Android/data/包名/files/il2cpp/Metadata/global-metadata.dat`
+    释放 global-metadata.dat 到对应的位置，覆盖原文件。global-metadata.dat 路径可以通过 `com.fastota.unity.UpSdk` 的 `GetGlobalMetadataFilePath` 静态方法获取。
 
 * 使 libil2cpp.so 资源生效
 
