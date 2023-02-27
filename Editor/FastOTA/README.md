@@ -21,7 +21,7 @@
 ## 执行变异
 
 * 复制 `il2cpp-api-functions.h` 到 `./Android/cxx` 目录
-    * `il2cpp-api-function.h` 位于 ``${EditorApplication.applicationContentsPath}/il2cpp/libil2cpp` 目录
+    * `il2cpp-api-function.h` 位于 `${EditorApplication.applicationContentsPath}/il2cpp/libil2cpp` 目录
     * 可以通过点击 Unity Editor 菜单栏 "FastOTA/Copy Il2cpp API File for Sdk Build" ，自动完成复制
 
 执行 `./build.sh`，生成的动态库位于 `lib` 目录

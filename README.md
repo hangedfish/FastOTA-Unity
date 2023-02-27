@@ -49,7 +49,9 @@ FastOTA-Unity 是一个 稳定、高效、兼容性强 的 Unity Android libil2c
 
 * 使 global-metadata.dat 资源生效
 
-    释放 global-metadata.dat 到对应的位置，覆盖原文件。global-metadata.dat 路径可以通过 `com.fastota.unity.UpSdk` 的 `GetGlobalMetadataFilePath` 静态方法获取。
+    释放 global-metadata.dat 到对应的位置，覆盖原文件。
+    
+    global-metadata.dat 路径可以通过 `com.fastota.unity.UpSdk` 的 `GetGlobalMetadataFilePath` 静态方法获取。
 
 * 使 libil2cpp.so 资源生效
 
